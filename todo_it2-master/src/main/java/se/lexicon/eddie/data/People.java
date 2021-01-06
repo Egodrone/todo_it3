@@ -49,10 +49,10 @@ public class People {
 
 
     //Remove the person by the id
-    public void removePerson(int persProvId) {
+    public void removePerson(int personProvId) {
         int removeIndex = 0;
         for (int i = 0; i < personArr.length; i++) {
-            if(personArr[i].getPersonId() == persProvId) {
+            if(personArr[i].getPersonId() == personProvId) {
                 //person id is found, no need to iterate further
                 removeIndex = i;
                 break;
