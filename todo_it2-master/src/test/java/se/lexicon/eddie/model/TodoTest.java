@@ -11,7 +11,6 @@ public class TodoTest {
 
     @Test
     public void test_todoBoolean() {
-        int todoIdTest = 0;
         Todo todoClass = new Todo();
         assertFalse(todoClass.getDone());
     }
@@ -26,9 +25,10 @@ public class TodoTest {
     //test of the default id
     @Test
     public void test_id() {
-        int todoIdTest = 11;
+        int todoIdTest = 0;
+        int expected = 1;
         Todo todoClass = new Todo(todoIdTest, "test");
-        assertEquals(todoIdTest,
+        assertEquals(expected,
                 todoClass.getTodoId());
     }
 
