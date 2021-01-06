@@ -41,8 +41,6 @@ public class People {
 
 
     public static Person[] createNewPerson(Person addNewPerson) {
-        //PersonSequencer sequencer = new PersonSequencer();
-        //int nextId = sequencer.nextPersonId();
         Person[] returnArray = Arrays.copyOf(personArr, personArr.length + 1);
         returnArray[returnArray.length - 1] = addNewPerson;
         return returnArray;
