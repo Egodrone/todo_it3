@@ -16,7 +16,7 @@ public class Person {
     }
 
     public Person(String firstName, String lastName) {
-        this.personId = PersonSequencer.nextPersonId();;
+        this.personId = PersonSequencer.nextPersonId();
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -40,4 +40,5 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }
