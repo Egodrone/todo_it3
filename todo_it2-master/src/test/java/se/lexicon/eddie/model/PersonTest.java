@@ -16,7 +16,7 @@ public class PersonTest {
     @Before
     public void setup() {
         person = new Person();
-        testAll = new Person(personId, "Eddie", "Test");
+        testAll = new Person("Eddie", "Test");
     }
 
     @Test
@@ -42,7 +42,6 @@ public class PersonTest {
         assertEquals(personLastName, person.getLastName()); //evaluate
     }
 
-
     @Test
     public void test_firstName() {
         // Test default setter
@@ -61,7 +60,5 @@ public class PersonTest {
         // Test default setter
         assertEquals(personId, person.getPersonId());
     }
-
-
 
 }
