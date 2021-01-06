@@ -3,16 +3,16 @@ package se.lexicon.eddie.data;
 
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+
 
 public class TodoSequencerTest {
     @Test
     public void test_nextPersonId_Todo() {
-        int currentId = 220;
-        int expectedId = 221;
+        int expectedId = 1;
         TodoSequencer todoSequencer = new TodoSequencer();
-        assertEquals(expectedId, todoSequencer.nextPersonIdTodo(currentId));
+        assertEquals(expectedId, todoSequencer.nextPersonIdTodo());
     }
 
     @Test
