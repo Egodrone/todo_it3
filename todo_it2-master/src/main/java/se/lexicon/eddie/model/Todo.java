@@ -2,21 +2,24 @@ package se.lexicon.eddie.model;
 
 
 
+import se.lexicon.eddie.data.TodoSequencer;
+
+
+
 public class Todo {
     private final int todoId;
     private String description;
-    private boolean done = false;
-    Person assignee = new Person();
+    private boolean done;
+    private Person assignee;
 
     public Todo(int todoId, String description) {
-        this.todoId = todoId;
+        this.todoId = TodoSequencer.nextPersonIdTodo();
         this.description = description;
     }
 
-    public Todo(int todoId) {
-        this.todoId = todoId;
+    public Todo() {
+        todoId = TodoSequencer.nextPersonIdTodo();
     }
-
 
     public int getTodoId() {
         return todoId;
@@ -45,5 +48,4 @@ public class Todo {
     public void setAssignee(Person assignee) {
         this.assignee = assignee;
     }
-
 }
