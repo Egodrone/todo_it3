@@ -13,7 +13,6 @@ public class TodoItems {
 
 
 
-
     //Return the length of the array
     public int size() {
         return todoArr.length;
