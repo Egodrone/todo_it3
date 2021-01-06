@@ -1,6 +1,7 @@
 package se.lexicon.eddie.model;
 
 
+
 import se.lexicon.eddie.data.PersonSequencer;
 
 
@@ -14,8 +15,8 @@ public class Person {
         this.personId = PersonSequencer.nextPersonId();
     }
 
-    public Person(int personId, String firstName, String lastName) {
-        this.personId = personId;
+    public Person(String firstName, String lastName) {
+        this.personId = PersonSequencer.nextPersonId();;
         this.firstName = firstName;
         this.lastName = lastName;
     }
