@@ -2,152 +2,157 @@ package se.lexicon.eddie.data;
 
 
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import se.lexicon.eddie.model.Person;
-import se.lexicon.eddie.data.People;
 
 
 
 public class PeopleTest {
-    private People people = new People();
-    private int personId = 0;
-    private Person[] person = new Person[1];
-    private Person test1 = new Person();
-    private Person test2 = new Person();
-    private Person person1 = new Person(0, "Eddie", "Test");
-    private Person person2 = new Person(1, "Jocko", "Willink");
+    private final Person[] testArr = new Person[3];
+    private final People ppl = new People();
+    private final Person one = new Person("Eddie", "One");
+    private final Person two = new Person("Test", "Two");
+    private final Person three = new Person("TestTest", "Three");
 
+
+    int runOnce = 1;
     @Before
     public void setup() {
-        people = new People();
-        Person test7 = new Person();
-        test1.getPersonId();
-        test1.setFirstName("Eddie");
-        test1.setFirstName("Test");
-        //test1 = new Person(1, "Eddie", "lastName");
-    }
-
-    @Test
-    public void test_size() {
-        int expectedId = 0;
-        Assert.assertEquals(expectedId, people.size());
-    }
-
-    @Test
-    public void test_clear(){
-        /*
-        String[] expectedResult = new String[0];
-        String[] emptyArray = new String[0];
-        // add a person to the array
-        String[] result = people.createNewPerson("Jocko", emptyArray);
-        //Clear an array to remove the person
-        */
-        Person[] result = people.createNewPerson(person1);
-        people.clear();
-        int expectedId = 0;
-        Assert.assertEquals(expectedId, people.size());
-    }
-
-    @Test
-    public void test_createNewPerson(){
-        //Creating the same person
-        Person[] result = people.createNewPerson(person1);
-        Person[] result2 = people.createNewPerson(person1);
-        Assert.assertNotEquals(result2, result);
-    }
-
-    @Test
-    public void test_createNewPerson2(){
-        //Creating two different persons
-        Person[] result = people.createNewPerson(person1);
-        Person[] result2 = people.createNewPerson(person2);
-        // They are not equal
-        Assert.assertNotEquals(result2, result);
-    }
-
-    @Test
-    public void test_findAll() {
-        // Creating person 1
-        //Person[] testPerson = people.createNewPerson(person1);
-        //Assert.assertEquals(testPerson, people.findAll());
-        String[] testPerson = new String[0];
-        Assert.assertEquals(testPerson, people.findAll());
+        People ppl = new People();
+        ppl.clear();
+        if (runOnce == 1) {
+            testArr[0] = one;
+            testArr[1] = two;
+            testArr[2] = three;
+            runOnce = 2;
+        }
     }
 
 
-    /*
-    // Previous testing on other constructions
-    @Test
-    public void test_findById(){
-        //There is no person registered in the beginning
-        //String expectedResult = "No person with that id is in the array";
-        //People people = new People();
-        //Person person1 = new Person(0, "Eddie", "Test");
-        //Person person2 = new Person(1, "Jocko", "Willink");
-        //test1.getPersonId();
-        //test1.setFirstName("Eddie");
-        //test1.setFirstName("Test");
-        //Person result;
-        Person test1 = new Person(0, "Eddie", "Test");
-        // Setting id to 1 to see if there are any in the register
-        Person result = people.findById(0);
-        Assert.assertEquals(result, test1);
-    }*/
 
-    /*
     @Test
-    public void test_findAll() {
-        String[] testPerson = new String[0];
-        Assert.assertEquals(testPerson, people.findAll());
+    public void test_get() {
+        String expected = "Eddie";
+        assertEquals(expected, one.getFirstName());
+
+        //test second name
+        expected = "Test";
+        assertEquals(expected, two.getFirstName());
+
+        //test third name
+        expected = "TestTest";
+        assertEquals(expected, three.getFirstName());
     }
 
+
+
     @Test
-    public void test_findById(){
-        //There is no person registered in the beginning
-        String expectedResult = "No person with that id is in the array";
-        People people = new People();
-        Person result;
-        // Setting id to 1 to see if there are any in the register
-        result = people.findById(0);
-        Assert.assertEquals(expectedResult, result);
+    public void test_get_lastName() {
+        String expected = "One";
+        assertEquals(expected, one.getLastName());
+
+        //test surname
+        expected = "Two";
+        assertEquals(expected, two.getLastName());
+
+        //test surname
+        expected = "Three";
+        assertEquals(expected, three.getLastName());
     }
 
+
+
     @Test
-    public void test_createNewPerson(){
-        String[] expectedResult = {"Jocko"};
-        String[] emptyArray = new String[0];
-        String newPersonToAdd = "Jocko";
-        String[] result = people.createNewPerson("Jocko", emptyArray);
-        Assert.assertEquals(expectedResult, result);
+    public void test_size_1() {
+        int expected = 0;
+        int actual = ppl.size();
+        assertEquals(expected, actual);
     }
 
+
+
     @Test
-    public void test_clear(){
-        String[] expectedResult = new String[0];
-        String[] emptyArray = new String[0];
-        // add a person to the array
-        String[] result = people.createNewPerson("Jocko", emptyArray);
-        //Clear an array to remove the person
-        people.clear();
-        //test size to see if the person is removed
-        int expectedId = 0;
-        Assert.assertEquals(expectedId, people.size());
+    public void test_add_and_size() {
+        //adding Array with a new person:
+        ppl.createNewPerson(testArr[0]);
+        //check size, should be ++ from 0 to 1
+        int expected = 1;
+        int actual = ppl.size();
+        assertEquals(expected, actual);
+
+        //Test create another person
+        ppl.createNewPerson(testArr[1]);
+
+        //test size again
+        assertEquals(2, ppl.size());
     }
 
+
+
     @Test
-    public void test_removeObject(){
-        // add persons to thew array
-        String[] emptyArray = new String[0];
-        String[] expectedResult = {"Jocko", "Eddie", "Robert"};
-        String[] currentArray = {"Jocko", "Eddie", "Robert", "Melvin"};
+    public void test_reset() {
+        //Check original length of the array
+        assertEquals(0, ppl.size());
+        //Add new people
+        ppl.createNewPerson(testArr[0]);
+        ppl.createNewPerson(testArr[1]);
+        ppl.createNewPerson(testArr[2]);
+
+        //Expecting length of 3
+        assertEquals(3, ppl.size());
+
+        //Reset
+        ppl.clear();
+        //Expecting 0
+        assertEquals(0, ppl.size());
+    }
 
 
-        //test of the removing Stefan from the array
-        currentArray = people.removeObject("Melvin", currentArray);
-        //addedNames = people.removeObject("Eddie", addedNames);
-        Assert.assertEquals(expectedResult, currentArray);
-    }*/
+
+    @Test
+    public void test_remove() {
+        //Add new people
+        ppl.createNewPerson(testArr[0]);
+        ppl.createNewPerson(testArr[1]);
+        ppl.createNewPerson(testArr[2]);
+
+        assertEquals(3, ppl.size());
+        //Remove person by id
+        ppl.removePerson(2);
+        assertEquals(2, ppl.size());
+
+        //Remove one more
+        ppl.removePerson(3);
+        assertEquals(1, ppl.size());
+
+        //remove the last one
+        ppl.removePerson(1);
+        assertEquals(0, ppl.size());
+    }
+
+
+    @Test
+    public void test_find_by_id() {
+        //Add new people
+        ppl.createNewPerson(testArr[0]);
+        ppl.createNewPerson(testArr[1]);
+        ppl.createNewPerson(testArr[2]);
+
+        assertEquals("Eddie", ppl.findById(0).getFirstName());
+        assertEquals("Test", ppl.findById(1).getFirstName());
+    }
+
+
+    @Test
+    public void test_find_all() {
+        People testAll = new People();
+        testAll.createNewPerson(one);
+        testAll.createNewPerson(two);
+        testAll.createNewPerson(three);
+        assertEquals(testAll.findAll(), ppl.findAll());
+    }
+
 
 }
