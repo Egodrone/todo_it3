@@ -40,10 +40,11 @@ public class People {
 
 
 
-    public static Person[] createNewPerson(Person addNewPerson) {
+    public Person[] createNewPerson(Person addNewPerson) {
         Person[] returnArray = Arrays.copyOf(personArr, personArr.length + 1);
         returnArray[returnArray.length - 1] = addNewPerson;
-        return returnArray;
+        personArr = returnArray;
+        return personArr;
     }
 
 
