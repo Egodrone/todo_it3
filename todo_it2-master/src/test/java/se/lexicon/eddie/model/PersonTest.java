@@ -13,26 +13,35 @@ public class PersonTest {
     private Person testAll;
     private int personId;
 
+
+
     @Before
     public void setup() {
         person = new Person();
         testAll = new Person("Eddie", "Test");
     }
 
+
+
     @Test
     public void test_person_id() {
-        int expectedResult = 1;
-        int actualResult = person.getPersonId(); //get id from the Person class
+        Person p1 = new Person("New", "Person");
+        int expectedResult = 7;
+        int actualResult = p1.getPersonId(); //get id from the Person class
         assertEquals(expectedResult, actualResult);
     }
+
+
 
     @Test
     public void test_set_and_get_firstName() {
         // Test following setters
         String personName = "Pablo";
-        person.setFirstName(personName);
-        assertEquals(personName, person.getFirstName());
+        testAll.setFirstName(personName);
+        assertEquals(personName, testAll.getFirstName());
     }
+
+
 
     @Test
     public void test_set_and_get_lastName() {
@@ -42,23 +51,22 @@ public class PersonTest {
         assertEquals(personLastName, person.getLastName()); //evaluate
     }
 
+
+
     @Test
     public void test_firstName() {
         // Test default setter
-        assertEquals(null, person.getFirstName());
+        assertEquals("Eddie", testAll.getFirstName());
     }
+
+
 
     @Test
     public void test_lastName() {
         // Test default setter
-        assertEquals(null, person.getFirstName());
+        assertEquals(null, person.getLastName());
+        assertEquals("Test", testAll.getLastName());
     }
 
-    @Test
-    public void test_id() {
-        int personId = 1;
-        // Test default setter
-        assertEquals(personId, person.getPersonId());
-    }
 
 }
