@@ -46,10 +46,12 @@ public class TodoItemsTest {
 
     @Test
     public void test_size() {
-        //array is set to 2
-        //System.out.printf("Test size");
-        //assertEquals(10, todoItems.size());
-        int a = 0;
+        TodoItems todoItemsCl = new TodoItems();
+        todoItemsCl.add(todo1);
+        todoItemsCl.add(todo2);
+        int expected = 2;
+        assertEquals(expected, todoItemsCl.size());
+        todoItemsCl.clear();
     }
 
 
